@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MainTabViewController.swift
 //  Top10News
 //
 //  Created by Taylor Patterson on 7/25/20.
@@ -8,13 +8,12 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MainTabViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
+        view.backgroundColor = .systemPink
     }
 
-
 }
-
