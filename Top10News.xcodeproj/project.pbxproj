@@ -13,6 +13,17 @@
 		67FEE31124CC452200D597A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67FEE31024CC452200D597A9 /* Assets.xcassets */; };
 		67FEE31424CC452200D597A9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67FEE31224CC452200D597A9 /* LaunchScreen.storyboard */; };
 		67FEE32224CC469E00D597A9 /* MainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FEE32124CC469E00D597A9 /* MainTabViewController.swift */; };
+		67FEE32624CC4A6500D597A9 /* Top10Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FEE32524CC4A6500D597A9 /* Top10Controller.swift */; };
+		67FEE32824CC4A7E00D597A9 /* BookmarkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FEE32724CC4A7E00D597A9 /* BookmarkController.swift */; };
+		67FEE32A24CC4A8E00D597A9 /* ExploreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FEE32924CC4A8E00D597A9 /* ExploreController.swift */; };
+		67FEE32C24CC4AD100D597A9 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FEE32B24CC4AD100D597A9 /* HomeController.swift */; };
+		67FEE32E24CD26C000D597A9 /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FEE32D24CD26C000D597A9 /* Extentions.swift */; };
+		67FEE33124CD2A8A00D597A9 /* Raleway-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 67FEE33024CD2A8A00D597A9 /* Raleway-Regular.ttf */; };
+		67FEE33324CD2AE500D597A9 /* Lora-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 67FEE33224CD2AE500D597A9 /* Lora-Bold.ttf */; };
+		67FEE33524CD2CEA00D597A9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FEE33424CD2CEA00D597A9 /* Constants.swift */; };
+		67FEE33824CE253600D597A9 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FEE33724CE253600D597A9 /* LoginController.swift */; };
+		67FEE33D24CE2A7400D597A9 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FEE33C24CE2A7400D597A9 /* RegistrationController.swift */; };
+		67FEE33F24CE2E5000D597A9 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FEE33E24CE2E5000D597A9 /* Utilities.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +35,17 @@
 		67FEE31324CC452200D597A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		67FEE31524CC452200D597A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		67FEE32124CC469E00D597A9 /* MainTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabViewController.swift; sourceTree = "<group>"; };
+		67FEE32524CC4A6500D597A9 /* Top10Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Top10Controller.swift; sourceTree = "<group>"; };
+		67FEE32724CC4A7E00D597A9 /* BookmarkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkController.swift; sourceTree = "<group>"; };
+		67FEE32924CC4A8E00D597A9 /* ExploreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreController.swift; sourceTree = "<group>"; };
+		67FEE32B24CC4AD100D597A9 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
+		67FEE32D24CD26C000D597A9 /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
+		67FEE33024CD2A8A00D597A9 /* Raleway-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Regular.ttf"; sourceTree = "<group>"; };
+		67FEE33224CD2AE500D597A9 /* Lora-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lora-Bold.ttf"; sourceTree = "<group>"; };
+		67FEE33424CD2CEA00D597A9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		67FEE33724CE253600D597A9 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		67FEE33C24CE2A7400D597A9 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
+		67FEE33E24CE2E5000D597A9 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +84,7 @@
 				67FEE31D24CC45D800D597A9 /* Controller */,
 				67FEE31C24CC45D100D597A9 /* API */,
 				67FEE31B24CC45CC00D597A9 /* Utils */,
+				67FEE32F24CD297200D597A9 /* Resources */,
 				67FEE30724CC451F00D597A9 /* AppDelegate.swift */,
 				67FEE30924CC451F00D597A9 /* SceneDelegate.swift */,
 				67FEE30D24CC451F00D597A9 /* Main.storyboard */,
@@ -75,6 +98,9 @@
 		67FEE31B24CC45CC00D597A9 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				67FEE32D24CD26C000D597A9 /* Extentions.swift */,
+				67FEE33424CD2CEA00D597A9 /* Constants.swift */,
+				67FEE33E24CE2E5000D597A9 /* Utilities.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -89,7 +115,12 @@
 		67FEE31D24CC45D800D597A9 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				67FEE33624CE251F00D597A9 /* Authentication */,
 				67FEE32124CC469E00D597A9 /* MainTabViewController.swift */,
+				67FEE32B24CC4AD100D597A9 /* HomeController.swift */,
+				67FEE32524CC4A6500D597A9 /* Top10Controller.swift */,
+				67FEE32724CC4A7E00D597A9 /* BookmarkController.swift */,
+				67FEE32924CC4A8E00D597A9 /* ExploreController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -113,6 +144,24 @@
 			children = (
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		67FEE32F24CD297200D597A9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				67FEE33224CD2AE500D597A9 /* Lora-Bold.ttf */,
+				67FEE33024CD2A8A00D597A9 /* Raleway-Regular.ttf */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		67FEE33624CE251F00D597A9 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				67FEE33724CE253600D597A9 /* LoginController.swift */,
+				67FEE33C24CE2A7400D597A9 /* RegistrationController.swift */,
+			);
+			path = Authentication;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,6 +225,8 @@
 				67FEE31424CC452200D597A9 /* LaunchScreen.storyboard in Resources */,
 				67FEE31124CC452200D597A9 /* Assets.xcassets in Resources */,
 				67FEE30F24CC451F00D597A9 /* Main.storyboard in Resources */,
+				67FEE33324CD2AE500D597A9 /* Lora-Bold.ttf in Resources */,
+				67FEE33124CD2A8A00D597A9 /* Raleway-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,9 +237,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67FEE32624CC4A6500D597A9 /* Top10Controller.swift in Sources */,
 				67FEE30824CC451F00D597A9 /* AppDelegate.swift in Sources */,
+				67FEE32C24CC4AD100D597A9 /* HomeController.swift in Sources */,
+				67FEE32A24CC4A8E00D597A9 /* ExploreController.swift in Sources */,
+				67FEE33F24CE2E5000D597A9 /* Utilities.swift in Sources */,
+				67FEE32E24CD26C000D597A9 /* Extentions.swift in Sources */,
 				67FEE30A24CC451F00D597A9 /* SceneDelegate.swift in Sources */,
+				67FEE33D24CE2A7400D597A9 /* RegistrationController.swift in Sources */,
 				67FEE32224CC469E00D597A9 /* MainTabViewController.swift in Sources */,
+				67FEE32824CC4A7E00D597A9 /* BookmarkController.swift in Sources */,
+				67FEE33524CD2CEA00D597A9 /* Constants.swift in Sources */,
+				67FEE33824CE253600D597A9 /* LoginController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
