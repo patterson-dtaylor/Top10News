@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class RegistrationController: UIViewController {
     
@@ -99,7 +100,91 @@ class RegistrationController: UIViewController {
     }
     
     @objc func registerButtonTapped() {
-        print("DEBUG: Register button tapped!!!")
+        
+        var username = ""
+        var email = ""
+        var password = ""
+        
+        guard let profileImage = profileImage else {
+            
+            let ac = Utilities().registrationAlterAction(
+                withControllerTitle: "Oops...",
+                withMessage: "You must select a profile image.",
+                withActionTitle: "Ok"
+            )
+            
+            present(ac, animated: true, completion: nil)
+            
+            return
+        }
+        
+        guard let safeUsername = usernameTextField.text?.lowercased() else { return }
+        
+        if safeUsername.count < 6 {
+            let ac = Utilities().registrationAlterAction(
+                withControllerTitle: "Darn...",
+                withMessage: "Your username must be more than 6 characters long.",
+                withActionTitle: "Ok"
+            )
+            
+            present(ac, animated: true, completion: nil)
+            
+        } else {
+            username = safeUsername
+        }
+        
+        print("DEBUG: User username is \(username).")
+        
+        guard let safeEmail = emailTextField.text else { return }
+    
+        let isAValidEmailAddress = Utilities().isValidEmailAddress(emailAddressString: safeEmail)
+        
+        if isAValidEmailAddress {
+            email = safeEmail
+        } else {
+            let ac = Utilities().registrationAlterAction(
+                withControllerTitle: "Aww, man...",
+                withMessage: "Your email must be a valid email address.",
+                withActionTitle: "Ok"
+            )
+            
+            present(ac, animated: true, completion: nil)
+        }
+        
+        print("DEBUG: User email is \(email).")
+        
+        guard let safePassword = passwordTextField.text else { return }
+        
+        let isValidPassword = Utilities().isValidPassword(passwordString: safePassword)
+        
+        if isValidPassword {
+            password = safePassword
+        } else {
+            let ac = Utilities().registrationAlterAction(
+                withControllerTitle: "Bummer...",
+                withMessage: "Your password must have at least 1 uppercase character, 1 digit, 1 lowercase character, and 8 characters total.",
+                withActionTitle: "Ok"
+            )
+            
+            present(ac, animated: true, completion: nil)
+        }
+        
+        print("DEBUG: User password is \(password).")
+        
+        Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
+            if let error = error {
+                let ac = Utilities().registrationAlterAction(
+                    withControllerTitle: "Oh no...",
+                    withMessage: "Error: \(error.localizedDescription)",
+                    withActionTitle: "Ok"
+                )
+                
+                self.present(ac, animated: true, completion: nil)
+            }
+            
+            print("DEBUG: Successfully created user!!!")
+        }
+        
     }
     
     @objc func handleShowLogin() {
@@ -116,6 +201,7 @@ class RegistrationController: UIViewController {
         addProfileImageButton.setDimensions(width: 150, height: 150)
         
         imagePicker.delegate = self
+        imagePicker.sourceType = .photoLibrary
         imagePicker.allowsEditing = true
         
         let stack = UIStackView(arrangedSubviews: [usernameContainerView, emailContainerView, passwordContainerView])
@@ -149,6 +235,7 @@ class RegistrationController: UIViewController {
             height: 16
         )
     }
+    
 }
 
 extension RegistrationController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3554995AD49C6452288B994F /* Pods_Top10News.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF2BF7A9521A9934644F0E97 /* Pods_Top10News.framework */; };
+		6744CF5624CF4CC700685AD3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6744CF5524CF4CC700685AD3 /* GoogleService-Info.plist */; };
 		67FEE30824CC451F00D597A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FEE30724CC451F00D597A9 /* AppDelegate.swift */; };
 		67FEE30A24CC451F00D597A9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FEE30924CC451F00D597A9 /* SceneDelegate.swift */; };
 		67FEE30F24CC451F00D597A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67FEE30D24CC451F00D597A9 /* Main.storyboard */; };
@@ -27,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6744CF5524CF4CC700685AD3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		67FEE30424CC451F00D597A9 /* Top10News.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Top10News.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		67FEE30724CC451F00D597A9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		67FEE30924CC451F00D597A9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -46,6 +49,9 @@
 		67FEE33724CE253600D597A9 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		67FEE33C24CE2A7400D597A9 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		67FEE33E24CE2E5000D597A9 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		AC8D10A371767E98C64401C3 /* Pods-Top10News.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Top10News.debug.xcconfig"; path = "Target Support Files/Pods-Top10News/Pods-Top10News.debug.xcconfig"; sourceTree = "<group>"; };
+		B3F2259678DF7E948BA8226B /* Pods-Top10News.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Top10News.release.xcconfig"; path = "Target Support Files/Pods-Top10News/Pods-Top10News.release.xcconfig"; sourceTree = "<group>"; };
+		DF2BF7A9521A9934644F0E97 /* Pods_Top10News.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Top10News.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,17 +59,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3554995AD49C6452288B994F /* Pods_Top10News.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B765CC1001E61D804C4A91D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DF2BF7A9521A9934644F0E97 /* Pods_Top10News.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		67FEE2FB24CC451F00D597A9 = {
 			isa = PBXGroup;
 			children = (
 				67FEE30624CC451F00D597A9 /* Top10News */,
 				67FEE30524CC451F00D597A9 /* Products */,
+				CF88A4CBCE354A2B64A55A4E /* Pods */,
+				2B765CC1001E61D804C4A91D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -91,6 +108,7 @@
 				67FEE31024CC452200D597A9 /* Assets.xcassets */,
 				67FEE31224CC452200D597A9 /* LaunchScreen.storyboard */,
 				67FEE31524CC452200D597A9 /* Info.plist */,
+				6744CF5524CF4CC700685AD3 /* GoogleService-Info.plist */,
 			);
 			path = Top10News;
 			sourceTree = "<group>";
@@ -164,6 +182,16 @@
 			path = Authentication;
 			sourceTree = "<group>";
 		};
+		CF88A4CBCE354A2B64A55A4E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AC8D10A371767E98C64401C3 /* Pods-Top10News.debug.xcconfig */,
+				B3F2259678DF7E948BA8226B /* Pods-Top10News.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -171,9 +199,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 67FEE31824CC452200D597A9 /* Build configuration list for PBXNativeTarget "Top10News" */;
 			buildPhases = (
+				5A94E4BC6F4BD68C64B20A57 /* [CP] Check Pods Manifest.lock */,
 				67FEE30024CC451F00D597A9 /* Sources */,
 				67FEE30124CC451F00D597A9 /* Frameworks */,
 				67FEE30224CC451F00D597A9 /* Resources */,
+				4FEC7684B36637592E6063CC /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -227,10 +257,53 @@
 				67FEE30F24CC451F00D597A9 /* Main.storyboard in Resources */,
 				67FEE33324CD2AE500D597A9 /* Lora-Bold.ttf in Resources */,
 				67FEE33124CD2A8A00D597A9 /* Raleway-Regular.ttf in Resources */,
+				6744CF5624CF4CC700685AD3 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4FEC7684B36637592E6063CC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Top10News/Pods-Top10News-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Top10News/Pods-Top10News-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Top10News/Pods-Top10News-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5A94E4BC6F4BD68C64B20A57 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Top10News-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		67FEE30024CC451F00D597A9 /* Sources */ = {
@@ -390,6 +463,7 @@
 		};
 		67FEE31924CC452200D597A9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AC8D10A371767E98C64401C3 /* Pods-Top10News.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -408,6 +482,7 @@
 		};
 		67FEE31A24CC452200D597A9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B3F2259678DF7E948BA8226B /* Pods-Top10News.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
