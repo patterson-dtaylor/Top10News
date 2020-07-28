@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>873600139195-j52rsl9eunusd5a7jlqiehjgin3na67q.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.873600139195-j52rsl9eunusd5a7jlqiehjgin3na67q</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAnQRvZOAnkyURTUFjNKfgZL2pz_War96o</string>
+	<key>GCM_SENDER_ID</key>
+	<string>873600139195</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>dev.taylorpatterson.Top10News</string>
+	<key>PROJECT_ID</key>
+	<string>top10news-d1435</string>
+	<key>STORAGE_BUCKET</key>
+	<string>top10news-d1435.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:873600139195:ios:d225745c27345429d10e9e</string>
+	<key>DATABASE_URL</key>
+	<string>https://top10news-d1435.firebaseio.com</string>
+</dict>
+</plist>

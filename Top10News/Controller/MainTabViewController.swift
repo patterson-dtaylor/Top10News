@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class MainTabViewController: UITabBarController {
     
@@ -21,13 +22,35 @@ class MainTabViewController: UITabBarController {
         
         view.isUserInteractionEnabled = true
         
-        configureViewContoller()
+//        signOut()
+        authenticateUserAndConfigureUI()
         
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.systemPink], for: .selected)
 
     }
     
     //MARK: - API
+    
+    func authenticateUserAndConfigureUI() {
+        if Auth.auth().currentUser == nil {
+            DispatchQueue.main.async {
+                let nav = UINavigationController(rootViewController: LoginController())
+                nav.modalPresentationStyle = .fullScreen
+                self.present(nav, animated: true, completion: nil)
+            }
+        } else {
+            configureViewContoller()
+        }
+    }
+    
+    func signOut() {
+        do {
+            try Auth.auth().signOut()
+            print("DEBUG: Signed user out!!!")
+        } catch let error {
+          print ("Error signing out: \(error.localizedDescription)")
+        }
+    }
     
     //MARK: - Selectors
     
