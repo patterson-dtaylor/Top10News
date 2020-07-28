@@ -102,5 +102,44 @@ class Utilities {
         
         return button
     }
+    
+    func registrationAlterAction(withControllerTitle controllerTitle: String, withMessage message: String, withActionTitle actionTitle: String) -> UIAlertController {
+        let ac = UIAlertController(title: controllerTitle, message: message, preferredStyle: .alert)
+        let altertAction = UIAlertAction(title: actionTitle, style: .cancel, handler: nil)
+        
+        ac.addAction(altertAction)
+        
+        return ac
 
+    }
+    
+    func isValidEmailAddress(emailAddressString: String) -> Bool {
+        
+        var returnValue = true
+        let emailRegEx = "[A-Z0-9a-z.-_]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,3}"
+        
+        do {
+            let regex = try NSRegularExpression(pattern: emailRegEx)
+            let nsString = emailAddressString as NSString
+            let results = regex.matches(in: emailAddressString, range: NSRange(location: 0, length: nsString.length))
+            
+            if results.count == 0
+            {
+                returnValue = false
+            }
+            
+        } catch let error as NSError {
+            print("invalid regex: \(error.localizedDescription)")
+            returnValue = false
+        }
+        
+        return  returnValue
+    }
+    
+    func isValidPassword(passwordString: String) -> Bool {
+        
+        let passwordTest = NSPredicate(format: "SELF MATCHES %@", "(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}")
+        return passwordTest.evaluate(with: passwordString)
+        
+    }
 }
