@@ -13,7 +13,14 @@ class MainTabViewController: UITabBarController {
     
     //MARK: - Properties
     
-    
+    var user: User? {
+        didSet {
+            guard let nav = viewControllers?[0] as? UINavigationController else { return }
+            guard let home = nav.viewControllers.first as? HomeController else { return }
+            
+            home.user = user
+        }
+    }
     
     //MARK: - LifeCycle
 
@@ -22,7 +29,6 @@ class MainTabViewController: UITabBarController {
         
         view.isUserInteractionEnabled = true
         
-//        signOut()
         authenticateUserAndConfigureUI()
         
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.systemPink], for: .selected)
@@ -40,15 +46,13 @@ class MainTabViewController: UITabBarController {
             }
         } else {
             configureViewContoller()
+            fetchUser()
         }
     }
     
-    func signOut() {
-        do {
-            try Auth.auth().signOut()
-            print("DEBUG: Signed user out!!!")
-        } catch let error {
-          print ("Error signing out: \(error.localizedDescription)")
+    func fetchUser() {
+        UserService.shared.fetchUsers { user in
+            self.user = user
         }
     }
     

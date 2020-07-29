@@ -171,20 +171,36 @@ class RegistrationController: UIViewController {
         
         print("DEBUG: User password is \(password).")
         
-        Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
-            if let error = error {
-                let ac = Utilities().registrationAlterAction(
-                    withControllerTitle: "Oh no...",
-                    withMessage: "Error: \(error.localizedDescription)",
-                    withActionTitle: "Ok"
-                )
-                
-                self.present(ac, animated: true, completion: nil)
-            }
+        let userCredentials = AuthCredentials(
+            profileImage: profileImage,
+            username: username,
+            email: email,
+            password: password
+        )
+        
+        AuthService.shared.registerUser(withCredientials: userCredentials) { (error, databaseReference) in
+            print("DEBUG: Successfully registered user!!!")
             
-            print("DEBUG: Successfully created user!!!")
+            guard let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) else { return }
+            
+            guard let tab = window.rootViewController as? MainTabViewController else { return }
+            
+            tab.authenticateUserAndConfigureUI()
+            
+            self.dismiss(animated: true, completion: nil)
         }
         
+        AuthService.shared.registerUser(withCredientials: userCredentials) { (error, databaseReference) in
+            print("DEBUG: Successfully registered user!!!")
+            
+            guard let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) else { return }
+
+            guard let tab = window.rootViewController as? MainTabViewController else { return }
+
+            tab.authenticateUserAndConfigureUI()
+
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
     @objc func handleShowLogin() {
@@ -234,6 +250,16 @@ class RegistrationController: UIViewController {
             width: 228,
             height: 16
         )
+    }
+    
+    func showError(error: Error) {
+        let ac = Utilities().registrationAlterAction(
+            withControllerTitle: "Oh no...",
+            withMessage: "Error: \(error.localizedDescription)",
+            withActionTitle: "Ok"
+        )
+        
+        self.present(ac, animated: true, completion: nil)
     }
     
 }
