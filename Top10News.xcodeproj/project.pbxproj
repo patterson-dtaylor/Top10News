@@ -3,12 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		3554995AD49C6452288B994F /* Pods_Top10News.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF2BF7A9521A9934644F0E97 /* Pods_Top10News.framework */; };
 		6744CF5624CF4CC700685AD3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6744CF5524CF4CC700685AD3 /* GoogleService-Info.plist */; };
+		674765DD24D0A7B100C66464 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674765DC24D0A7B100C66464 /* AuthService.swift */; };
+		674765DF24D10BFE00C66464 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674765DE24D10BFE00C66464 /* UserService.swift */; };
+		674765E124D1122400C66464 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674765E024D1122400C66464 /* User.swift */; };
 		67FEE30824CC451F00D597A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FEE30724CC451F00D597A9 /* AppDelegate.swift */; };
 		67FEE30A24CC451F00D597A9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FEE30924CC451F00D597A9 /* SceneDelegate.swift */; };
 		67FEE30F24CC451F00D597A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67FEE30D24CC451F00D597A9 /* Main.storyboard */; };
@@ -30,6 +33,9 @@
 
 /* Begin PBXFileReference section */
 		6744CF5524CF4CC700685AD3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		674765DC24D0A7B100C66464 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		674765DE24D10BFE00C66464 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		674765E024D1122400C66464 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		67FEE30424CC451F00D597A9 /* Top10News.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Top10News.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		67FEE30724CC451F00D597A9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		67FEE30924CC451F00D597A9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -126,6 +132,8 @@
 		67FEE31C24CC45D100D597A9 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				674765DC24D0A7B100C66464 /* AuthService.swift */,
+				674765DE24D10BFE00C66464 /* UserService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -160,6 +168,7 @@
 		67FEE32024CC45E500D597A9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				674765E024D1122400C66464 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -188,7 +197,6 @@
 				AC8D10A371767E98C64401C3 /* Pods-Top10News.debug.xcconfig */,
 				B3F2259678DF7E948BA8226B /* Pods-Top10News.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -310,12 +318,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				674765DF24D10BFE00C66464 /* UserService.swift in Sources */,
 				67FEE32624CC4A6500D597A9 /* Top10Controller.swift in Sources */,
 				67FEE30824CC451F00D597A9 /* AppDelegate.swift in Sources */,
 				67FEE32C24CC4AD100D597A9 /* HomeController.swift in Sources */,
 				67FEE32A24CC4A8E00D597A9 /* ExploreController.swift in Sources */,
 				67FEE33F24CE2E5000D597A9 /* Utilities.swift in Sources */,
 				67FEE32E24CD26C000D597A9 /* Extentions.swift in Sources */,
+				674765DD24D0A7B100C66464 /* AuthService.swift in Sources */,
+				674765E124D1122400C66464 /* User.swift in Sources */,
 				67FEE30A24CC451F00D597A9 /* SceneDelegate.swift in Sources */,
 				67FEE33D24CE2A7400D597A9 /* RegistrationController.swift in Sources */,
 				67FEE32224CC469E00D597A9 /* MainTabViewController.swift in Sources */,

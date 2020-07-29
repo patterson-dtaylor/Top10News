@@ -7,9 +7,9 @@
 //
 
 import UIKit
+import Firebase
 
 //MARK: - Fonts
-
 let loraBold = "Lora-Bold"
 let ralewayRegular = "Raleway-Regular"
 
@@ -18,3 +18,11 @@ let ralewayRegular = "Raleway-Regular"
 let grayText = "regularTextGray"
 let blackText = "boldTextBlack"
 let gradientBG = "gradientBackgorund"
+
+//MARK: - Database
+let DB_REF = Database.database().reference()
+let REF_USERS = DB_REF.child("users")
+
+//MARK: - Storage
+let STORAGE_REF = Storage.storage().reference()
+let STORAGE_PROFILE_IMAGE = STORAGE_REF.child("profile_images")

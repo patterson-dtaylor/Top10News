@@ -85,16 +85,16 @@ class LoginController: UIViewController {
         guard let email = emailTextField.text else { return }
         guard let password = passwordTextField.text else { return }
         
-        Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
+        AuthService.shared.logUserIn(withEmail: email, withPassword: password) { (result, error) in
             if let error = error {
-                let ac = Utilities().registrationAlterAction(
-                    withControllerTitle: "Oh no...",
-                    withMessage: "Error: \(error.localizedDescription)",
-                    withActionTitle: "Ok"
-                )
-                
-                self.present(ac, animated: true, completion: nil)
-            }
+            let ac = Utilities().registrationAlterAction(
+                withControllerTitle: "Oh no...",
+                withMessage: "Error: \(error.localizedDescription)",
+                withActionTitle: "Ok"
+            )
+            
+            self.present(ac, animated: true, completion: nil)
+        }
             
             print("DEBUG: Successfully signed in user!!!")
             
