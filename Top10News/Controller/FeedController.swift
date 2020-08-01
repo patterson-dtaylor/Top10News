@@ -9,6 +9,8 @@
 import UIKit
 import SDWebImage
 
+private let resuseIdentifier = "NewsCardCell"
+
 class FeedController: UIViewController {
     
     //MARK: - Properties
@@ -19,7 +21,9 @@ class FeedController: UIViewController {
         }
     }
     
-    let dateLabel: UILabel = {
+    var newsCards = NewsCard.fetchNewsCards()
+    
+    private let dateLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
         label.text = "Saturday, July 25"
@@ -29,7 +33,7 @@ class FeedController: UIViewController {
         return label
     }()
     
-    let todayLabel: UILabel = {
+    private let todayLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
         label.text = "Today"
@@ -54,6 +58,13 @@ class FeedController: UIViewController {
         return iv
     }()
     
+    let newsCardCollectionView: UICollectionView = {
+        let cv = UICollectionView(frame: .infinite, collectionViewLayout: UICollectionViewFlowLayout())
+        
+        
+        return cv
+    }()
+    
     //MARK: - LifeCycle
 
     override func viewDidLoad() {
@@ -61,14 +72,27 @@ class FeedController: UIViewController {
         
         view.isUserInteractionEnabled = true
         
+        newsCardCollectionView.dataSource = self
+        newsCardCollectionView.register(NewsCardCell.self, forCellWithReuseIdentifier: resuseIdentifier)
+        
+//        let cellSize = CGSize(width: 200, height: 300)
+//
+//        let layout = UICollectionViewFlowLayout()
+//        layout.scrollDirection = .horizontal
+//        layout.itemSize = cellSize
+//        layout.sectionInset = UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1)
+//        layout.minimumInteritemSpacing = 20.0
+//        layout.minimumLineSpacing = 20.0
+//
+//        newsCardCollectionView.setCollectionViewLayout(layout, animated: true)
+        
         configureUI()
-
+        
+        newsCardCollectionView.reloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = true
-        
-        
     }
     
     //MARK: - API
@@ -84,15 +108,12 @@ class FeedController: UIViewController {
     func configureUI() {
         view.backgroundColor = .systemGray6
         
-        dateLabel.text = currentDayAndDate()
-    }
-    
-    func configureUserProfileImage() {
-        guard let user = user else { return }
-        
+
         let labelStack = UIStackView(arrangedSubviews: [dateLabel, todayLabel])
         labelStack.axis = .vertical
         labelStack.spacing = 4
+        
+        dateLabel.text = currentDayAndDate()
         
         let stack = UIStackView(arrangedSubviews: [labelStack, profileImage])
         stack.axis = .horizontal
@@ -100,6 +121,28 @@ class FeedController: UIViewController {
         stack.distribution = .equalSpacing
         view.addSubview(stack)
         stack.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 5, paddingLeft: 20, paddingRight: 20)
+        
+        let cellSize = CGSize(width: 200, height: 300)
+
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.itemSize = cellSize
+        layout.sectionInset = UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1)
+        layout.minimumInteritemSpacing = 20.0
+        layout.minimumLineSpacing = 20.0
+
+        newsCardCollectionView.setCollectionViewLayout(layout, animated: true)
+        
+        view.addSubview(newsCardCollectionView)
+        newsCardCollectionView.backgroundColor = .systemGray6
+        newsCardCollectionView.anchor(top: stack.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 5, height: 350)
+        
+    }
+    
+    func configureUserProfileImage() {
+        guard let user = user else { return }
+        
+        
 
         guard let profileImageURL = URL(string: user.profileImage) else { return }
         profileImage.sd_setImage(with: profileImageURL, completed: nil)
@@ -118,4 +161,33 @@ class FeedController: UIViewController {
         return currentDayAndDate
     }
 
+}
+
+//MARK: - UICollectionViewDataSource
+
+extension FeedController: UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return newsCards.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        print("DEBUG: CollectionView is showing.")
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: resuseIdentifier, for: indexPath) as! NewsCardCell
+        
+        let newsCard = newsCards[indexPath.item]
+        
+        cell.newsCard = newsCard
+        print("DEBUG: \(cell.cardLabel.text!)")
+        print("DEBUG: \(cell.cardImage.image!)")
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("DEBUG: CV clicked!")
+    }
 }

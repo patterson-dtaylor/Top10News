@@ -16,7 +16,7 @@ class MainTabViewController: UITabBarController {
     var user: User? {
         didSet {
             guard let nav = viewControllers?[0] as? UINavigationController else { return }
-            guard let home = nav.viewControllers.first as? HomeController else { return }
+            guard let home = nav.viewControllers.first as? FeedController else { return }
             
             home.user = user
         }
@@ -62,7 +62,7 @@ class MainTabViewController: UITabBarController {
     
     func configureViewContoller() {
         
-        let home = templateNavigationController(withTabBarImage: "house.fill", withTabBarSelectedImage: "home", withTabBarTitle: "Home", withRootViewController: HomeController())
+        let home = templateNavigationController(withTabBarImage: "house.fill", withTabBarSelectedImage: "home", withTabBarTitle: "Home", withRootViewController: FeedController())
         
         let top10 = templateNavigationController(withTabBarImage: "list.number", withTabBarSelectedImage: "list", withTabBarTitle: "Top 10", withRootViewController: Top10Controller())
         

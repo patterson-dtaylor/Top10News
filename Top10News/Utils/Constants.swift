@@ -12,6 +12,7 @@ import Firebase
 //MARK: - Fonts
 let loraBold = "Lora-Bold"
 let ralewayRegular = "Raleway-Regular"
+let ralewayBold = "Raleway-Bold"
 
 //MARK: - Colors
 
