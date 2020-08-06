@@ -18,14 +18,9 @@ class NewsCardCell: UICollectionViewCell {
     
     let cardImage: UIImageView = {
         let iv = UIImageView()
+        iv.isUserInteractionEnabled = false
         
         return iv
-    }()
-    
-    let cardBackgroundColorView: UIColor = {
-        let color = UIColor()
-        
-        return color
     }()
     
     let cardLabel: UILabel = {
@@ -44,6 +39,8 @@ class NewsCardCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
+        contentView.isUserInteractionEnabled = true
+        
     }
     
     required init?(coder: NSCoder) {
@@ -56,12 +53,10 @@ class NewsCardCell: UICollectionViewCell {
     
     func configureUI() {
         if let newsCard = newsCard {
-            let cardbackground = newsCard.coverColor
             
             contentView.addSubview(cardImage)
             cardImage.image = newsCard.featuredImage.withRenderingMode(.alwaysOriginal)
             cardImage.layer.masksToBounds = true
-            cardImage.tintColor = cardbackground
             cardImage.anchor(top: contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor)
             
             
