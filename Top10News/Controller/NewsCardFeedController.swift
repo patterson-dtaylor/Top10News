@@ -24,6 +24,12 @@ class NewsCardFeedConroller: UITableViewController {
 
         self.newsCard = newsCard
         super.init(style: .plain)
+        
+        if let url = URL(string: getURL()) {
+            if let data = try? Data(contentsOf: url) {
+                parse(json: data)
+            }
+        }
 
     }
 
@@ -34,13 +40,13 @@ class NewsCardFeedConroller: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let url = URL(string: getURL()) {
-            if let data = try? Data(contentsOf: url) {
-                parse(json: data)
-            }
-        }
+//        let longPressGesture: UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
+//        longPressGesture.minimumPressDuration = 1.0
+//        longPressGesture.delegate = self
+//        self.tableView.addGestureRecognizer(longPressGesture)
         
-        
+        let interaction = UIContextMenuInteraction(delegate: self)
+        view.addInteraction(interaction)
         
         configure()
     }
@@ -48,6 +54,23 @@ class NewsCardFeedConroller: UITableViewController {
     //MARK: - API
     
     //MARK: - Selectors
+    
+//    @objc func handleLongPress(longPressGesure: UILongPressGestureRecognizer) {
+//        let longPress = longPressGesure.location(in: self.tableView)
+//        let indexPath = self.tableView.indexPathForRow(at: longPress)
+//        let article = articles[indexPath!.row]
+//        let articleVM = ArticleViewModel(article)
+//
+//        if indexPath == nil {
+//            print("DEBUG: Long press on table view, not row.")
+//        } else if longPressGesure.state == UIGestureRecognizer.State.began {
+//            print("DEBUG: Long press on row, at \(indexPath!.row)")
+//            print("DEBUG: \(articleVM.title)")
+//            print("DEBUG: \(articleVM.description)")
+//            print("DEBUG: \(articleVM.urlToImage)")
+//            print("DEBUG: \(articleVM.urlToArticle)")
+//        }
+//    }
     
     //MARK: - Helpers
     
@@ -59,7 +82,6 @@ class NewsCardFeedConroller: UITableViewController {
         
         tableView.register(News10TableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         tableView.rowHeight = 300
-        
         
 //        WebService().preformRequest(with: url)
 //        WebService().getArticles(url: url) { articles in
@@ -97,7 +119,7 @@ class NewsCardFeedConroller: UITableViewController {
     
 }
 
-extension NewsCardFeedConroller {
+extension NewsCardFeedConroller: UIGestureRecognizerDelegate {
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -111,7 +133,7 @@ extension NewsCardFeedConroller {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! News10TableViewCell
         
         let article = articles[indexPath.row]
-        print(article)
+//        print(article)
         let articleVM = ArticleViewModel(article)
         cell.titleLabel.text = articleVM.title
         cell.descriptionLabel.text = articleVM.description
@@ -131,5 +153,32 @@ extension NewsCardFeedConroller {
         }
         
         tableView.deselectRow(at: indexPath, animated: false)
+    }
+    
+    override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        let share = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up.fill")) { action in
+            let article = self.articles[indexPath.row]
+            let articleVM = ArticleViewModel(article)
+            print("Debug: Share this article!!!")
+            let item = [URL(string: articleVM.urlToArticle)]
+            
+            let ac = UIActivityViewController(activityItems: item as [Any], applicationActivities: nil)
+            self.present(ac, animated: true)
+        }
+        
+        let bookmark = UIAction(title: "Bookmark", image: UIImage(systemName: "bookmark.fill")) { action in
+            print("DEBUG: Bookmark this article!!!")
+        }
+        
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
+            UIMenu(title: "Actions", children: [share, bookmark])
+        }
+    }
+}
+
+extension NewsCardFeedConroller: UIContextMenuInteractionDelegate {
+    
+    func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
+        return nil
     }
 }
