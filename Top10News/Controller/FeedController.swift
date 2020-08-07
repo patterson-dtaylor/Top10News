@@ -20,8 +20,7 @@ class FeedController: UIViewController {
             configureUserProfileImage()
         }
     }
-    
-    let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleProfileImageTapped))
+
 //    var newsCard = NewsCard
     var newsCards = NewsCardViewModel().data
     
@@ -52,6 +51,8 @@ class FeedController: UIViewController {
         iv.setDimensions(width: 50, height: 50)
         iv.layer.cornerRadius = 50 / 2
         iv.layer.backgroundColor = UIColor.systemPink.cgColor
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleProfileImageTapped))
 
         iv.addGestureRecognizer(tapGesture)
         iv.isUserInteractionEnabled = true
@@ -70,7 +71,7 @@ class FeedController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tapGesture.cancelsTouchesInView = false
+//        tapGesture.cancelsTouchesInView = false
         
         view.isUserInteractionEnabled = true
         
@@ -86,6 +87,8 @@ class FeedController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = true
+        
+//        view.backgroundColor = .systemPink
     }
     
     //MARK: - API
@@ -118,17 +121,17 @@ class FeedController: UIViewController {
         let cellSize = CGSize(width: 200, height: 300)
 
         let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
+        layout.scrollDirection = .vertical
         layout.itemSize = cellSize
         layout.sectionInset = UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1)
-        layout.minimumInteritemSpacing = 20.0
-        layout.minimumLineSpacing = 20.0
+        layout.minimumInteritemSpacing = 5.0
+        layout.minimumLineSpacing = 5.0
 
         newsCardCollectionView.setCollectionViewLayout(layout, animated: true)
         
         view.addSubview(newsCardCollectionView)
         newsCardCollectionView.backgroundColor = .systemGray6
-        newsCardCollectionView.anchor(top: stack.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 5, height: 350)
+        newsCardCollectionView.anchor(top: stack.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 5, paddingLeft: 3, paddingRight: 3, width: view.frame.width, height: view.frame.height - 150)
         newsCardCollectionView.isUserInteractionEnabled = true
         
     }
@@ -177,14 +180,14 @@ extension FeedController: UICollectionViewDataSource, UICollectionViewDelegate {
         cell.newsCard = newsCard
         print("DEBUG: \(newsCard.title)")
         
-        tapGesture.cancelsTouchesInView = false
+//        tapGesture.cancelsTouchesInView = false
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let controller = NewsCardFeedConroller(newsCard: newsCards[indexPath.item])
         let navigationController = UINavigationController(rootViewController: controller)
-        tapGesture.cancelsTouchesInView = false
+//        tapGesture.cancelsTouchesInView = false
         present(navigationController, animated: true, completion: nil)
     }
 }

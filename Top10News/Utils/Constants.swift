@@ -31,3 +31,4 @@ let STORAGE_PROFILE_IMAGE = STORAGE_REF.child("profile_images")
 //MARK: - NewsAPI
 let api = "https://newsapi.org/v2/top-headlines?pageSize=10&"
 let apiKey = "&apiKey=d1d8db101735417ea95d216fc300339e"
+let top10List = "https://newsapi.org/v2/top-headlines?pageSize=10&country=us\(apiKey)"
