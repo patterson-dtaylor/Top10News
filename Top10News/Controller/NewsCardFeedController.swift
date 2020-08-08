@@ -45,6 +45,8 @@ class NewsCardFeedConroller: UITableViewController {
 //        longPressGesture.delegate = self
 //        self.tableView.addGestureRecognizer(longPressGesture)
         
+        
+        
         let interaction = UIContextMenuInteraction(delegate: self)
         view.addInteraction(interaction)
         
@@ -80,8 +82,12 @@ class NewsCardFeedConroller: UITableViewController {
         
         navigationItem.title = newsCard.title
         
+        tableView.frame = self.view.frame
+        tableView.dataSource = self
+        tableView.delegate = self
         tableView.register(News10TableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
-        tableView.rowHeight = 300
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 300
         
 //        WebService().preformRequest(with: url)
 //        WebService().getArticles(url: url) { articles in
@@ -156,9 +162,11 @@ extension NewsCardFeedConroller: UIGestureRecognizerDelegate {
     }
     
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        let article = self.articles[indexPath.row]
+        let articleVM = ArticleViewModel(article)
+        
         let share = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up.fill")) { action in
-            let article = self.articles[indexPath.row]
-            let articleVM = ArticleViewModel(article)
+            
             print("Debug: Share this article!!!")
             let item = [URL(string: articleVM.urlToArticle)]
             
@@ -167,7 +175,11 @@ extension NewsCardFeedConroller: UIGestureRecognizerDelegate {
         }
         
         let bookmark = UIAction(title: "Bookmark", image: UIImage(systemName: "bookmark.fill")) { action in
-            print("DEBUG: Bookmark this article!!!")
+            BookmarkService.shared.uploadBookmark(withTitle: articleVM.title, withDescription: articleVM.description, withArticleURL: articleVM.urlToArticle) { (error, reference) in
+                if let error = error {
+                    print("DEBUG: Failed to upload tweet with error: \(error.localizedDescription)")
+                }
+            }
         }
         
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
