@@ -23,6 +23,8 @@ let gradientBG = "gradientBackgorund"
 //MARK: - Database
 let DB_REF = Database.database().reference()
 let REF_USERS = DB_REF.child("users")
+let REF_BOOKMARKS = DB_REF.child("bookmarks")
+let REF_USER_BOOKMARKS = DB_REF.child("user-bookmarks")
 
 //MARK: - Storage
 let STORAGE_REF = Storage.storage().reference()
