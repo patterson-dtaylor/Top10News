@@ -66,5 +66,12 @@ struct BookmarkService {
         userBookmarkRef.child(uid).child(id).removeValue(completionBlock: completion)
         
     }
+    
+    func showError(withErrorType errorType: String) -> UIAlertController {
+            let ac = UIAlertController(title: "Loading Error", message: "There was a problem \(errorType) your bookmarks; please check your connection and try again.", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Okay", style: .default))
+            
+            return ac
+    }
 }
 

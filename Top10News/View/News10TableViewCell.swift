@@ -13,7 +13,7 @@ class News10TableViewCell: UITableViewCell {
     
     var articleImageView: UIImageView = {
         let iv = UIImageView()
-//        iv.setDimensions(width: 414, height: 200)
+        iv.setDimensions(width: 800, height: 200)
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         iv.layer.backgroundColor = UIColor.systemPink.cgColor
@@ -45,10 +45,7 @@ class News10TableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        let imageStack = UIStackView(arrangedSubviews: [articleImageView])
-        imageStack.setDimensions(width: contentView.frame.width, height: 200)
-        
-        let stack = UIStackView(arrangedSubviews: [imageStack, titleLabel, descriptionLabel])
+        let stack = UIStackView(arrangedSubviews: [articleImageView, titleLabel, descriptionLabel])
         stack.axis = .vertical
         stack.spacing = 2
         stack.alignment = .leading

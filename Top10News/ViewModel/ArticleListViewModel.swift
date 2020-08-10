@@ -30,8 +30,4 @@ struct ArticleViewModel {
     var urlToImage: String {
         return self.article.urlToImage ?? "https://www.webdesigndev.com/wp-content/uploads/2015/04/Free-404-Error-Page-PSD-Template.jpg"
     }
-    
-    
-    
-    
 }

@@ -107,7 +107,8 @@ extension BookmarkController: UIGestureRecognizerDelegate {
         let deleteBookmark = UIAction(title: "Delete", image: UIImage(systemName: "delete.right.fill")) { action in
             BookmarkService.shared.delteBookmark(withBookmarkId: bookmark.bookmarkID) { (error, ref) in
                 if error != nil {
-                    print("DEBUg: \(error!.localizedDescription)")
+                    let ac = BookmarkService.shared.showError(withErrorType: "deleting")
+                    self.present(ac, animated: true, completion: nil)
                 }
                 
                 self.fetchBookmarks()
