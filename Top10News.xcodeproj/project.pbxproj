@@ -11,6 +11,7 @@
 		67301ED524DD6E3D00B861C6 /* BookmarkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67301ED424DD6E3D00B861C6 /* BookmarkService.swift */; };
 		67301ED724DE407A00B861C6 /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67301ED624DE407A00B861C6 /* Bookmark.swift */; };
 		67301ED924DEBCF000B861C6 /* BookmarkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67301ED824DEBCF000B861C6 /* BookmarkTableViewCell.swift */; };
+		67301EDB24E0756900B861C6 /* ExploreFeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67301EDA24E0756900B861C6 /* ExploreFeedController.swift */; };
 		6744CF5624CF4CC700685AD3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6744CF5524CF4CC700685AD3 /* GoogleService-Info.plist */; };
 		674765DD24D0A7B100C66464 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674765DC24D0A7B100C66464 /* AuthService.swift */; };
 		674765DF24D10BFE00C66464 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674765DE24D10BFE00C66464 /* UserService.swift */; };
@@ -49,6 +50,7 @@
 		67301ED424DD6E3D00B861C6 /* BookmarkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkService.swift; sourceTree = "<group>"; };
 		67301ED624DE407A00B861C6 /* Bookmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bookmark.swift; sourceTree = "<group>"; };
 		67301ED824DEBCF000B861C6 /* BookmarkTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkTableViewCell.swift; sourceTree = "<group>"; };
+		67301EDA24E0756900B861C6 /* ExploreFeedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreFeedController.swift; sourceTree = "<group>"; };
 		6744CF5524CF4CC700685AD3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		674765DC24D0A7B100C66464 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		674765DE24D10BFE00C66464 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 				67FEE32724CC4A7E00D597A9 /* BookmarkController.swift */,
 				67FEE32924CC4A8E00D597A9 /* ExploreController.swift */,
 				67A828B324D57E5300E2884D /* NewsCardFeedController.swift */,
+				67301EDA24E0756900B861C6 /* ExploreFeedController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -383,6 +386,7 @@
 				67A828BA24D7B25C00E2884D /* Article.swift in Sources */,
 				67A828C224D81B7E00E2884D /* News10TableViewCell.swift in Sources */,
 				67FEE33D24CE2A7400D597A9 /* RegistrationController.swift in Sources */,
+				67301EDB24E0756900B861C6 /* ExploreFeedController.swift in Sources */,
 				67FEE32224CC469E00D597A9 /* MainTabViewController.swift in Sources */,
 				67FEE32824CC4A7E00D597A9 /* BookmarkController.swift in Sources */,
 				67A828B624D6D34B00E2884D /* NewsCardViewModel.swift in Sources */,

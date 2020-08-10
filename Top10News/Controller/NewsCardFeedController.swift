@@ -24,12 +24,6 @@ class NewsCardFeedConroller: UITableViewController {
 
         self.newsCard = newsCard
         super.init(style: .plain)
-        
-        if let url = URL(string: getURL()) {
-            if let data = try? Data(contentsOf: url) {
-                parse(json: data)
-            }
-        }
 
     }
 
@@ -40,12 +34,20 @@ class NewsCardFeedConroller: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        let longPressGesture: UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
-//        longPressGesture.minimumPressDuration = 1.0
-//        longPressGesture.delegate = self
-//        self.tableView.addGestureRecognizer(longPressGesture)
-        
-        
+        DispatchQueue.global(qos: .userInitiated).async {
+            if let url = URL(string: WebService.shared.getURL(newsCard: self.newsCard)) {
+                if let data = try? Data(contentsOf: url) {
+                    WebService.shared.parse(json: data) { (articleList) in
+                        self.articles = articleList ?? []
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                        }
+                    }
+                    return
+                }
+            }
+            self.showError()
+        }
         
         let interaction = UIContextMenuInteraction(delegate: self)
         view.addInteraction(interaction)
@@ -55,24 +57,9 @@ class NewsCardFeedConroller: UITableViewController {
     
     //MARK: - API
     
-    //MARK: - Selectors
     
-//    @objc func handleLongPress(longPressGesure: UILongPressGestureRecognizer) {
-//        let longPress = longPressGesure.location(in: self.tableView)
-//        let indexPath = self.tableView.indexPathForRow(at: longPress)
-//        let article = articles[indexPath!.row]
-//        let articleVM = ArticleViewModel(article)
-//
-//        if indexPath == nil {
-//            print("DEBUG: Long press on table view, not row.")
-//        } else if longPressGesure.state == UIGestureRecognizer.State.began {
-//            print("DEBUG: Long press on row, at \(indexPath!.row)")
-//            print("DEBUG: \(articleVM.title)")
-//            print("DEBUG: \(articleVM.description)")
-//            print("DEBUG: \(articleVM.urlToImage)")
-//            print("DEBUG: \(articleVM.urlToArticle)")
-//        }
-//    }
+    
+    //MARK: - Selectors
     
     //MARK: - Helpers
     
@@ -89,40 +76,14 @@ class NewsCardFeedConroller: UITableViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 300
         
-//        WebService().preformRequest(with: url)
-//        WebService().getArticles(url: url) { articles in
-//            if let articles = articles {
-//                self.articleListVM = ArticleListViewModel(articles: articles)
-//
-//                print(self.articleListVM.articles.count)
-//                DispatchQueue.main.async {
-//                    self.tableView.reloadData()
-//                }
-//
-//            }
-//        }
-        
     }
     
-    func getURL() -> String {
-        
-        let viewModel = NewsCardFeedViewModel(newsCard: newsCard)
-        let query = viewModel.urlForApi
-        
-        let url = "\(api)\(query)\(apiKey)"
-        
-        return url
-    }
-    
-    func parse(json: Data) {
-        let decoder = JSONDecoder()
-        
-        if let jsonArticles = try? decoder.decode(ArticleList.self, from: json) {
-            articles = jsonArticles.articles
-            tableView.reloadData()
+    func showError() {
+        DispatchQueue.main.async {
+            let ac = WebService.shared.showError()
+            self.present(ac, animated: true)
         }
     }
-    
 }
 
 extension NewsCardFeedConroller: UIGestureRecognizerDelegate {
@@ -131,7 +92,6 @@ extension NewsCardFeedConroller: UIGestureRecognizerDelegate {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(articles.count)
         return articles.count
     }
     
@@ -139,7 +99,6 @@ extension NewsCardFeedConroller: UIGestureRecognizerDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! News10TableViewCell
         
         let article = articles[indexPath.row]
-//        print(article)
         let articleVM = ArticleViewModel(article)
         cell.titleLabel.text = articleVM.title
         cell.descriptionLabel.text = articleVM.description
@@ -166,8 +125,6 @@ extension NewsCardFeedConroller: UIGestureRecognizerDelegate {
         let articleVM = ArticleViewModel(article)
         
         let share = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up.fill")) { action in
-            
-            print("Debug: Share this article!!!")
             let item = [URL(string: articleVM.urlToArticle)]
             
             let ac = UIActivityViewController(activityItems: item as [Any], applicationActivities: nil)
@@ -176,11 +133,13 @@ extension NewsCardFeedConroller: UIGestureRecognizerDelegate {
         
         let bookmark = UIAction(title: "Bookmark", image: UIImage(systemName: "bookmark.fill")) { action in
             BookmarkService.shared.uploadBookmark(withTitle: articleVM.title, withDescription: articleVM.description, withArticleURL: articleVM.urlToArticle) { (error, reference) in
-                if let error = error {
-                    print("DEBUG: Failed to upload tweet with error: \(error.localizedDescription)")
+                if error != nil {
+                    let ac = BookmarkService.shared.showError(withErrorType: "loading")
+                    self.present(ac, animated: true, completion: nil)
                 }
             }
         }
+        
         
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
             UIMenu(title: "Actions", children: [share, bookmark])

@@ -70,11 +70,5 @@ class NewsCardCell: UICollectionViewCell {
             cardImage.image = nil
             cardLabel.text = nil
         }
-        
-        
-        
-        
-        
-        
     }
 }

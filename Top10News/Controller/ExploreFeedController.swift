@@ -1,8 +1,8 @@
 //
-//  Top10Controller.swift
+//  ExploreFeedController.swift
 //  Top10News
 //
-//  Created by Taylor Patterson on 7/25/20.
+//  Created by Taylor Patterson on 8/9/20.
 //  Copyright © 2020 Taylor Patterson. All rights reserved.
 //
 
@@ -10,21 +10,37 @@ import UIKit
 
 private let reuseIdentifier = "News10TableViewCell"
 
-class Top10Controller: UITableViewController {
+class ExploreFeedController: UITableViewController {
     
     //MARK: - Properties
     
+    private var queryText: String?
+    private var queryURL: String?
+    
     var articles = [Article]()
     
-    //MARK: - LifeCycle
-
+    //MARK: - Lifecycle
+    
+    init(queryText: String, queryURL: String) {
+        
+        self.queryText = queryText
+        self.queryURL = queryURL
+        super.init(style: .plain)
+        
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         DispatchQueue.global(qos: .userInitiated).async {
-            if let url = URL(string: top10List) {
+            if let url = URL(string: self.queryURL ?? "") {
                 if let data = try? Data(contentsOf: url) {
                     WebService.shared.parse(json: data) { (articleList) in
+                        self.articles.removeAll()
                         self.articles = articleList ?? []
                         DispatchQueue.main.async {
                             self.tableView.reloadData()
@@ -36,22 +52,22 @@ class Top10Controller: UITableViewController {
             self.showError()
         }
         
-        configureUI()
-
+        let interaction = UIContextMenuInteraction(delegate: self)
+        view.addInteraction(interaction)
+        
+        configure()
     }
-    
-    //MARK: - API
     
     //MARK: - Selectors
     
     //MARK: - Helpers
     
-    func configureUI() {
-        view.backgroundColor = .white
+    func configure() {
+        navigationController?.navigationBar.prefersLargeTitles = true
         
-        let imageView = UIImageView(image: UIImage(named: "top10NavBar"))
-        imageView.contentMode = .scaleAspectFit
-        navigationItem.titleView = imageView
+        guard let navTitle = queryText else { return }
+        
+        navigationItem.title = navTitle.capitalized
         
         tableView.frame = self.view.frame
         tableView.dataSource = self
@@ -59,11 +75,6 @@ class Top10Controller: UITableViewController {
         tableView.register(News10TableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 300
-        tableView.separatorStyle = .none
-        
-        
-        let interaction = UIContextMenuInteraction(delegate: self)
-        view.addInteraction(interaction)
     }
     
     func showError() {
@@ -74,7 +85,7 @@ class Top10Controller: UITableViewController {
     }
 }
 
-extension Top10Controller: UIGestureRecognizerDelegate {
+extension ExploreFeedController: UIGestureRecognizerDelegate {
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -134,7 +145,7 @@ extension Top10Controller: UIGestureRecognizerDelegate {
     }
 }
 
-extension Top10Controller: UIContextMenuInteractionDelegate {
+extension ExploreFeedController: UIContextMenuInteractionDelegate {
     
     func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
         return nil

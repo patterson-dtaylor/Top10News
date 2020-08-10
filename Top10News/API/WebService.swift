@@ -6,74 +6,37 @@
 //  Copyright © 2020 Taylor Patterson. All rights reserved.
 //
 
-import Foundation
-
-protocol WebServiceDelegate {
-    func didUpdateArticle(_ webService: WebService, article: Article)
-    func didFailWithError(error: Error)
-}
+import UIKit
 
 struct WebService {
     
-    var delegate: WebServiceDelegate?
+    static let shared = WebService()
     
-    func getArticles(url: URL, completion: @escaping([Article]?) -> ()) {
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            if let error = error {
-                print(error.localizedDescription)
-                completion(nil)
-            } else if let data = data {
-                
-                let articleList = try? JSONDecoder().decode(ArticleList.self, from: data)
-                
-                if let articleList = articleList {
-                    print(articleList.articles)
-                    completion(articleList.articles)
-                }
-            }
-        }.resume()
+    func getURL(newsCard: NewsCard) -> String {
+        
+        let viewModel = NewsCardFeedViewModel(newsCard: newsCard)
+        let query = viewModel.urlForApi
+        
+        let url = "\(api)\(query)\(apiKey)"
+        
+        return url
     }
     
-    func preformRequest(with urlString: String) {
-        if let url = URL(string: urlString) {
-            
-            let session = URLSession(configuration: .default)
-            
-            let task = session.dataTask(with: url) { (data, response, error) in
-                if error != nil {
-                    self.delegate?.didFailWithError(error: error!)
-                    return
-                }
-                
-                if let safeData = data {
-                    print(safeData)
-                    if let article = self.parseJSON(safeData) {
-                        self.delegate?.didUpdateArticle(self, article: article)
-                    }
-                }
-            }
-            
-            task.resume()
-        }
-    }
-    
-    func parseJSON(_ articleData: Data) -> Article? {
+    func parse(json: Data, completion:  @escaping([Article]?) -> ()) {
         let decoder = JSONDecoder()
         
-        do {
-            let decodedData = try decoder.decode(Article.self, from: articleData)
-            let title = decodedData.title
-            let description = decodedData.description
-            let urlToArticle = decodedData.url
-            let urlToImage = decodedData.urlToImage
-            
-            let article = Article(title: title, description: description, url: urlToArticle, urlToImage: urlToImage)
-            print(article)
-            return article
-        } catch {
-            delegate?.didFailWithError(error: error)
-            return nil
-        }
+        let jsonArticles = try? decoder.decode(ArticleList.self, from: json)
         
+        if let articleList = jsonArticles {
+            completion(articleList.articles)
+        }
     }
+    
+    func showError() -> UIAlertController {
+            let ac = UIAlertController(title: "Loading Error", message: "There was a problem loading the feed; please check your connection and try again.", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Okay", style: .default))
+            
+            return ac
+    }
+
 }
