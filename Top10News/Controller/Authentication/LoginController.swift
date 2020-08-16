@@ -60,6 +60,13 @@ class LoginController: UIViewController {
         return button
     }()
     
+    private let forgotPasswordButton: UIButton = {
+        let button = Utilities().attributedButton("Forgot password?", " Click here!")
+        button.addTarget(self, action: #selector(handleForgotPassword), for: .touchUpInside)
+        
+        return button
+    }()
+    
     private let dontHaveAccountButton: UIButton = {
         let button = Utilities().attributedButton("Don't have an account?", " Sign Up Now!")
         button.addTarget(self, action: #selector(handleShowRegistration), for: .touchUpInside)
@@ -100,12 +107,16 @@ class LoginController: UIViewController {
             
             guard let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) else { return }
 
-            guard let tab = window.rootViewController as? MainTabViewController else { return }
+            guard let tab = window.rootViewController as? MainTabController else { return }
 
             tab.authenticateUserAndConfigureUI()
 
             self.dismiss(animated: true, completion: nil)
         }
+    }
+    
+    @objc func handleForgotPassword() {
+        forgotPassword()
     }
     
     @objc func handleShowRegistration() {
@@ -147,6 +158,10 @@ class LoginController: UIViewController {
             height: 50
         )
         
+        view.addSubview(forgotPasswordButton)
+        forgotPasswordButton.setDimensions(width: 200, height: 16)
+        forgotPasswordButton.centerX(inView: view, topAnchor: loginButton.bottomAnchor, paddingTop: 30)
+        
         view.addSubview(dontHaveAccountButton)
         dontHaveAccountButton.anchor(
             left: view.leftAnchor,
@@ -158,6 +173,36 @@ class LoginController: UIViewController {
             width: 228,
             height: 16
         )
+    }
+    
+    func forgotPassword(){
         
+        let ac = UIAlertController(title: "Forgot password?", message: "Enter your email.", preferredStyle: .alert)
+        ac.addTextField { (textfield) in
+            textfield.placeholder = "Email"
+            textfield.textColor = .gray
+        }
+        
+        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        ac.addAction(UIAlertAction(title: "Send password", style: .default, handler: { (action) in
+            guard let email = ac.textFields?[0].text else { return }
+            
+            if email != "" {
+                AuthService.shared.forgotPassword(withEmail: email) { (error) in
+                    if let error = error {
+                        let ac = AuthService.shared.showPasswordError(withError: error)
+                        self.present(ac, animated: true, completion: nil)
+                    }
+                }
+            } else {
+                let ac = UIAlertController(title: "Error", message: "Email cannot be blank!", preferredStyle: .alert)
+                ac.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
+                self.present(ac, animated: true, completion: nil)
+            }
+            
+        }))
+        
+        present(ac, animated: true, completion: nil)
     }
 }

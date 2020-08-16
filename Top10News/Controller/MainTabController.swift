@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class MainTabViewController: UITabBarController {
+class MainTabController: UITabBarController {
     
     //MARK: - Properties
     
@@ -17,8 +17,10 @@ class MainTabViewController: UITabBarController {
         didSet {
             guard let nav = viewControllers?[0] as? UINavigationController else { return }
             guard let home = nav.viewControllers.first as? FeedController else { return }
-            
             home.user = user
+            
+            guard let profileMenu = nav.viewControllers.last as? ProfileMenuController else { return }
+            profileMenu.user = user
         }
     }
     

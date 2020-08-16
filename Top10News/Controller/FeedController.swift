@@ -8,6 +8,7 @@
 
 import UIKit
 import SDWebImage
+import SideMenu
 
 private let resuseIdentifier = "NewsCardCell"
 
@@ -22,6 +23,8 @@ class FeedController: UIViewController {
     }
     
     var newsCards = NewsCardViewModel().data
+    
+    var menu: SideMenuNavigationController?
     
     private let dateLabel: UILabel = {
         let label = UILabel()
@@ -92,7 +95,16 @@ class FeedController: UIViewController {
     //MARK: - Selectors
     
     @objc func handleProfileImageTapped() {
-        AuthService.shared.signOut()
+        menu = SideMenuNavigationController(rootViewController: ProfileMenuController())
+        menu?.leftSide = false
+        menu?.setNavigationBarHidden(true, animated: true)
+        menu?.alwaysAnimate = true
+        menu?.animationOptions = .allowUserInteraction
+        menu?.animationOptions = .curveEaseInOut
+        menu?.presentationStyle = .menuSlideIn
+        menu?.presentingViewControllerUserInteractionEnabled = false
+        menu?.blurEffectStyle = .systemUltraThinMaterialDark
+        present(menu!, animated: true, completion: nil)
     }
     
     //MARK: - Helpers
@@ -121,14 +133,12 @@ class FeedController: UIViewController {
             paddingRight: 20
         )
         
-        let cellSize = CGSize(width: 200, height: 300)
+        let cellSize = CGSize(width: self.view.frame.width / 2 - 10, height: 300)
 
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.itemSize = cellSize
         layout.sectionInset = UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1)
-        layout.minimumInteritemSpacing = 5.0
-        layout.minimumLineSpacing = 5.0
 
         newsCardCollectionView.setCollectionViewLayout(layout, animated: true)
         
@@ -189,7 +199,6 @@ extension FeedController: UICollectionViewDataSource, UICollectionViewDelegate {
         let newsCard = newsCards[indexPath.item]
         
         cell.newsCard = newsCard
-        print("DEBUG: \(newsCard.title)")
         
         return cell
     }
