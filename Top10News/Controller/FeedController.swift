@@ -39,7 +39,7 @@ class FeedController: UIViewController {
     private let todayLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.text = "Today"
+        label.text = "Today,"
         label.font = UIFont(name: loraBold, size: 30)
         label.tintColor = UIColor(named: blackText)
         
@@ -80,7 +80,9 @@ class FeedController: UIViewController {
         newsCardCollectionView.register(NewsCardCell.self, forCellWithReuseIdentifier: resuseIdentifier)
         newsCardCollectionView.isUserInteractionEnabled = true
         
+        
         configureUI()
+        fetchUser()
         
         newsCardCollectionView.reloadData()
     }
@@ -91,6 +93,12 @@ class FeedController: UIViewController {
     }
     
     //MARK: - API
+    
+    func fetchUser() {
+        UserService.shared.fetchUsers { user in
+            self.user = user
+        }
+    }
     
     //MARK: - Selectors
     
@@ -112,7 +120,6 @@ class FeedController: UIViewController {
     func configureUI() {
         view.backgroundColor = .systemGray6
         
-
         let labelStack = UIStackView(arrangedSubviews: [dateLabel, todayLabel])
         labelStack.axis = .vertical
         labelStack.spacing = 4
@@ -164,6 +171,8 @@ class FeedController: UIViewController {
 
         guard let profileImageURL = URL(string: user.profileImage) else { return }
         profileImage.sd_setImage(with: profileImageURL, completed: nil)
+        
+        todayLabel.text = "Hi, \(user.username)!"
     }
     
     func currentDayAndDate() -> String {
