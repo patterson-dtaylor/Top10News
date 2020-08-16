@@ -58,12 +58,34 @@ struct AuthService {
         }
     }
     
-    func signOut() {
-        do {
-            try Auth.auth().signOut()
-            print("DEBUG: Signed user out!!!")
-        } catch let error {
-          print ("Error signing out: \(error.localizedDescription)")
+    func updatedUserData(withUserUID uid: String, withProfileImage profileImage: UIImage, withUsername username: String, completion: @escaping(Error?, DatabaseReference) -> Void) {
+        guard let imageData = profileImage.jpegData(compressionQuality: 0.3) else { return }
+        let fileName = NSUUID().uuidString
+        let storageRef = STORAGE_PROFILE_IMAGE.child(fileName)
+        
+        storageRef.putData(imageData, metadata: nil) { (meta, err) in
+            storageRef.downloadURL { (url, err) in
+                if let error = err {
+                    self.registrationController.showError(error: error)
+                }
+                
+                guard let profileImageURL = url?.absoluteString else { return }
+                
+                let username = username
+                
+                REF_USERS.child(uid).updateChildValues(["profileImageURL": profileImageURL, "username": username], withCompletionBlock: completion)
+            }
+            
         }
+    }
+    
+    func forgotPassword(withEmail email: String, completion: @escaping((Error?) -> Void)) {
+        Auth.auth().sendPasswordReset(withEmail: email, completion: completion)
+    }
+    
+    func showPasswordError(withError error: Error) -> UIAlertController {
+        let ac = UIAlertController(title: "Error", message: "\(error.localizedDescription)", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+        return ac
     }
 }

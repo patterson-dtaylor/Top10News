@@ -183,22 +183,10 @@ class RegistrationController: UIViewController {
             
             guard let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) else { return }
             
-            guard let tab = window.rootViewController as? MainTabViewController else { return }
+            guard let tab = window.rootViewController as? MainTabController else { return }
             
             tab.authenticateUserAndConfigureUI()
             
-            self.dismiss(animated: true, completion: nil)
-        }
-        
-        AuthService.shared.registerUser(withCredientials: userCredentials) { (error, databaseReference) in
-            print("DEBUG: Successfully registered user!!!")
-            
-            guard let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) else { return }
-
-            guard let tab = window.rootViewController as? MainTabViewController else { return }
-
-            tab.authenticateUserAndConfigureUI()
-
             self.dismiss(animated: true, completion: nil)
         }
     }
