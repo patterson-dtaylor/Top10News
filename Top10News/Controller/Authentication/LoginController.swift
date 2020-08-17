@@ -132,18 +132,18 @@ class LoginController: UIViewController {
         
         view.addSubview(logoImageView)
         logoImageView.setDimensions(width: 200, height: 200)
-        logoImageView.centerX(inView: view, topAnchor: view.safeAreaLayoutGuide.topAnchor, paddingTop: 100)
+        logoImageView.centerX(inView: view, topAnchor: view.safeAreaLayoutGuide.topAnchor, paddingTop: 50)
         
         let stack = UIStackView(arrangedSubviews: [emailContainerView, passwordContainerView])
         stack.axis = .vertical
-        stack.spacing = 30
+        stack.spacing = 20
         
         view.addSubview(stack)
         stack.anchor(
             top: logoImageView.bottomAnchor,
             left: view.leftAnchor,
             right: view.rightAnchor,
-            paddingTop: 50
+            paddingTop: 20
         )
         
         view.addSubview(loginButton)
@@ -169,7 +169,7 @@ class LoginController: UIViewController {
             right: view.rightAnchor,
             paddingLeft: 40,
             paddingBottom: 20,
-            paddingRight: 30,
+            paddingRight: 40,
             width: 228,
             height: 16
         )

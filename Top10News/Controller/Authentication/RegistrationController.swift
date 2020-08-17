@@ -96,7 +96,25 @@ class RegistrationController: UIViewController {
     //MARK: - Selectors
     
     @objc func addProfileButtonTapped() {
-        present(imagePicker, animated: true)
+        let ac = UIAlertController(title: "Profile Image", message: "Choose how or where to get your profile image.", preferredStyle: .actionSheet)
+        
+        let camera = UIAlertAction(title: "Camera", style: .default) { (action) in
+            print("DEBUG: Imagepicker!!!")
+            self.imagePicker.sourceType = .camera
+            self.imagePicker.allowsEditing = true
+            self.imagePicker.cameraCaptureMode = .photo
+            self.present(self.imagePicker, animated: true, completion: nil)
+        }
+        
+        let photoLibrary = UIAlertAction(title: "Choose Photo", style: .default) { (action) in
+            self.imagePicker.sourceType = .photoLibrary
+            self.imagePicker.allowsEditing = true
+            self.present(self.imagePicker, animated: true, completion: nil)
+        }
+        
+        ac.addAction(camera)
+        ac.addAction(photoLibrary)
+        present(ac, animated: true)
     }
     
     @objc func registerButtonTapped() {
@@ -205,8 +223,6 @@ class RegistrationController: UIViewController {
         addProfileImageButton.setDimensions(width: 150, height: 150)
         
         imagePicker.delegate = self
-        imagePicker.sourceType = .photoLibrary
-        imagePicker.allowsEditing = true
         
         let stack = UIStackView(arrangedSubviews: [usernameContainerView, emailContainerView, passwordContainerView])
         stack.axis = .vertical

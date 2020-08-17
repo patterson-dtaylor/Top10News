@@ -29,6 +29,7 @@
 		67A828C224D81B7E00E2884D /* News10TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A828C124D81B7E00E2884D /* News10TableViewCell.swift */; };
 		67B459F424E2A6D90080037B /* ProfileMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B459F324E2A6D90080037B /* ProfileMenuController.swift */; };
 		67BA7DB824E69BB200E67A63 /* UpdateUserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BA7DB724E69BB200E67A63 /* UpdateUserProfileController.swift */; };
+		67BA7DBC24E94A0600E67A63 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BA7DBB24E94A0600E67A63 /* Constants.swift */; };
 		67FEE30824CC451F00D597A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FEE30724CC451F00D597A9 /* AppDelegate.swift */; };
 		67FEE30A24CC451F00D597A9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FEE30924CC451F00D597A9 /* SceneDelegate.swift */; };
 		67FEE30F24CC451F00D597A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67FEE30D24CC451F00D597A9 /* Main.storyboard */; };
@@ -42,7 +43,6 @@
 		67FEE32E24CD26C000D597A9 /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FEE32D24CD26C000D597A9 /* Extentions.swift */; };
 		67FEE33124CD2A8A00D597A9 /* Raleway-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 67FEE33024CD2A8A00D597A9 /* Raleway-Regular.ttf */; };
 		67FEE33324CD2AE500D597A9 /* Lora-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 67FEE33224CD2AE500D597A9 /* Lora-Bold.ttf */; };
-		67FEE33524CD2CEA00D597A9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FEE33424CD2CEA00D597A9 /* Constants.swift */; };
 		67FEE33824CE253600D597A9 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FEE33724CE253600D597A9 /* LoginController.swift */; };
 		67FEE33D24CE2A7400D597A9 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FEE33C24CE2A7400D597A9 /* RegistrationController.swift */; };
 		67FEE33F24CE2E5000D597A9 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FEE33E24CE2E5000D597A9 /* Utilities.swift */; };
@@ -70,6 +70,7 @@
 		67A828C124D81B7E00E2884D /* News10TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News10TableViewCell.swift; sourceTree = "<group>"; };
 		67B459F324E2A6D90080037B /* ProfileMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMenuController.swift; sourceTree = "<group>"; };
 		67BA7DB724E69BB200E67A63 /* UpdateUserProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserProfileController.swift; sourceTree = "<group>"; };
+		67BA7DBB24E94A0600E67A63 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		67FEE30424CC451F00D597A9 /* Top10News.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Top10News.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		67FEE30724CC451F00D597A9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		67FEE30924CC451F00D597A9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -85,7 +86,6 @@
 		67FEE32D24CD26C000D597A9 /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
 		67FEE33024CD2A8A00D597A9 /* Raleway-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Regular.ttf"; sourceTree = "<group>"; };
 		67FEE33224CD2AE500D597A9 /* Lora-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lora-Bold.ttf"; sourceTree = "<group>"; };
-		67FEE33424CD2CEA00D597A9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		67FEE33724CE253600D597A9 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		67FEE33C24CE2A7400D597A9 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		67FEE33E24CE2E5000D597A9 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
@@ -157,8 +157,8 @@
 			isa = PBXGroup;
 			children = (
 				67FEE32D24CD26C000D597A9 /* Extentions.swift */,
-				67FEE33424CD2CEA00D597A9 /* Constants.swift */,
 				67FEE33E24CE2E5000D597A9 /* Utilities.swift */,
+				67BA7DBB24E94A0600E67A63 /* Constants.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -379,6 +379,7 @@
 				67301ED524DD6E3D00B861C6 /* BookmarkService.swift in Sources */,
 				67FEE32C24CC4AD100D597A9 /* FeedController.swift in Sources */,
 				67FEE32A24CC4A8E00D597A9 /* ExploreController.swift in Sources */,
+				67BA7DBC24E94A0600E67A63 /* Constants.swift in Sources */,
 				67A828BC24D7B2E600E2884D /* ArticleList.swift in Sources */,
 				6751C7AB24D265030007E5A4 /* NewsCardCell.swift in Sources */,
 				6751C7A924D1F2D50007E5A4 /* NewsCard.swift in Sources */,
@@ -398,7 +399,6 @@
 				67BA7DB824E69BB200E67A63 /* UpdateUserProfileController.swift in Sources */,
 				67FEE32824CC4A7E00D597A9 /* BookmarkController.swift in Sources */,
 				67A828B624D6D34B00E2884D /* NewsCardViewModel.swift in Sources */,
-				67FEE33524CD2CEA00D597A9 /* Constants.swift in Sources */,
 				67FEE33824CE253600D597A9 /* LoginController.swift in Sources */,
 				67301ED724DE407A00B861C6 /* Bookmark.swift in Sources */,
 			);

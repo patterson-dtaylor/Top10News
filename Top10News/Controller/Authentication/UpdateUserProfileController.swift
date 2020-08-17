@@ -163,7 +163,7 @@ class UpdateUserProfileController: UIViewController {
         profileImage.setDimensions(width: 150, height: 150)
         
         imagePicker.delegate = self
-        imagePicker.sourceType = .photoLibrary
+        imagePicker.sourceType = .camera
         imagePicker.allowsEditing = true
         
         view.addSubview(editProfileImageSymbol)
