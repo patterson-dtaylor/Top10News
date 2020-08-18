@@ -18,6 +18,8 @@ class NewsCardFeedConroller: UITableViewController {
     
     var articles = [Article]()
     
+    let activityIndicator = UIActivityIndicatorView(style: .large)
+    
     //MARK: - Lifecycle
     
     init(newsCard: NewsCard) {
@@ -34,12 +36,38 @@ class NewsCardFeedConroller: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.addSubview(activityIndicator)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.color = .systemPink
+        activityIndicator.center(inView: view)
+        
+        
+        loadArticleData()
+        
+        let interaction = UIContextMenuInteraction(delegate: self)
+        view.addInteraction(interaction)
+        
+//        configure()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        configure()
+    }
+    
+    //MARK: - API
+    
+    func loadArticleData() {
+        activityIndicator.startAnimating()
         DispatchQueue.global(qos: .userInitiated).async {
             if let url = URL(string: WebService.shared.getURL(newsCard: self.newsCard)) {
                 if let data = try? Data(contentsOf: url) {
                     WebService.shared.parse(json: data) { (articleList) in
                         self.articles = articleList ?? []
                         DispatchQueue.main.async {
+                            self.activityIndicator.stopAnimating()
                             self.tableView.reloadData()
                         }
                     }
@@ -48,23 +76,13 @@ class NewsCardFeedConroller: UITableViewController {
             }
             self.showError()
         }
-        
-        let interaction = UIContextMenuInteraction(delegate: self)
-        view.addInteraction(interaction)
-        
-        configure()
     }
-    
-    //MARK: - API
-    
-    
     
     //MARK: - Selectors
     
     //MARK: - Helpers
     
     func configure() {
-        
         navigationController?.navigationBar.prefersLargeTitles = true
         
         navigationItem.title = newsCard.title
@@ -75,6 +93,7 @@ class NewsCardFeedConroller: UITableViewController {
         tableView.register(News10TableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 300
+        tableView.reloadData()
         
     }
     
@@ -85,6 +104,8 @@ class NewsCardFeedConroller: UITableViewController {
         }
     }
 }
+
+//MARK: - TableView Datasource
 
 extension NewsCardFeedConroller: UIGestureRecognizerDelegate {
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -146,6 +167,8 @@ extension NewsCardFeedConroller: UIGestureRecognizerDelegate {
         }
     }
 }
+
+//MARK: - UIGestureDelegate
 
 extension NewsCardFeedConroller: UIContextMenuInteractionDelegate {
     

@@ -16,17 +16,36 @@ class Top10Controller: UITableViewController {
     
     var articles = [Article]()
     
+    let activityIndicator = UIActivityIndicatorView(style: .large)
+    
     //MARK: - LifeCycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.addSubview(activityIndicator)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.color = .systemPink
+        activityIndicator.center(inView: view)
+        
+        loadArticleData()
+        
+        configureUI()
+
+    }
+    
+    //MARK: - API
+    
+    func loadArticleData() {
+        activityIndicator.startAnimating()
         DispatchQueue.global(qos: .userInitiated).async {
             if let url = URL(string: top10List) {
                 if let data = try? Data(contentsOf: url) {
                     WebService.shared.parse(json: data) { (articleList) in
                         self.articles = articleList ?? []
                         DispatchQueue.main.async {
+                            self.activityIndicator.stopAnimating()
                             self.tableView.reloadData()
                         }
                     }
@@ -35,12 +54,7 @@ class Top10Controller: UITableViewController {
             }
             self.showError()
         }
-        
-        configureUI()
-
     }
-    
-    //MARK: - API
     
     //MARK: - Selectors
     

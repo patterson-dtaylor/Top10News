@@ -97,6 +97,7 @@ PODS:
     - SDWebImage/Core (= 5.8.3)
   - SDWebImage/Core (5.8.3)
   - SideMenu (6.4.9)
+  - SkeletonView (1.8.7)
 
 DEPENDENCIES:
   - Firebase/Analytics
@@ -105,6 +106,7 @@ DEPENDENCIES:
   - Firebase/Storage
   - SDWebImage (~> 5.0)
   - SideMenu (~> 6.0)
+  - SkeletonView
 
 SPEC REPOS:
   trunk:
@@ -128,6 +130,7 @@ SPEC REPOS:
     - PromisesObjC
     - SDWebImage
     - SideMenu
+    - SkeletonView
 
 SPEC CHECKSUMS:
   Firebase: b28e55c60efd98963cd9011fe2fac5a10c2ba124
@@ -150,7 +153,8 @@ SPEC CHECKSUMS:
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
   SDWebImage: 112503ec94a5a2a41869503844a15e8d8f1ead5c
   SideMenu: 8ef57a3cfc024a2d3fc1c036c7fe98537baec9e0
+  SkeletonView: ba5370f41280b2f0a76918bb143c1294232bb4f4
 
-PODFILE CHECKSUM: 22d89bfb55a399b28fd081c9af5217748cc3a471
+PODFILE CHECKSUM: 2c8890b0e152d04ba3a5ab49b148dd36eebc7844
 
 COCOAPODS: 1.9.1

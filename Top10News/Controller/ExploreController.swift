@@ -81,7 +81,7 @@ class ExploreController: UIViewController {
         
         view.addSubview(logoImageView)
         logoImageView.setDimensions(width: 200, height: 200)
-        logoImageView.centerX(inView: view, topAnchor: view.safeAreaLayoutGuide.topAnchor, paddingTop: 100)
+        logoImageView.centerX(inView: view, topAnchor: view.safeAreaLayoutGuide.topAnchor, paddingTop: 75)
         
         view.addSubview(searchTextField)
         searchTextField.centerX(inView: view, topAnchor: logoImageView.bottomAnchor, paddingTop: 50)

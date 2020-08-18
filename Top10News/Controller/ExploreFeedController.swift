@@ -19,6 +19,8 @@ class ExploreFeedController: UITableViewController {
     
     var articles = [Article]()
     
+    let activityIndicator = UIActivityIndicatorView(style: .large)
+    
     //MARK: - Lifecycle
     
     init(queryText: String, queryURL: String) {
@@ -36,6 +38,24 @@ class ExploreFeedController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.addSubview(activityIndicator)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.color = .systemPink
+        activityIndicator.center(inView: view)
+        
+        loadArticleData()
+
+        let interaction = UIContextMenuInteraction(delegate: self)
+        view.addInteraction(interaction)
+        
+        configure()
+    }
+    
+    //MARK: - API
+    
+    func loadArticleData() {
+        activityIndicator.startAnimating()
         DispatchQueue.global(qos: .userInitiated).async {
             if let url = URL(string: self.queryURL ?? "") {
                 if let data = try? Data(contentsOf: url) {
@@ -43,6 +63,7 @@ class ExploreFeedController: UITableViewController {
                         self.articles.removeAll()
                         self.articles = articleList ?? []
                         DispatchQueue.main.async {
+                            self.activityIndicator.stopAnimating()
                             self.tableView.reloadData()
                         }
                     }
@@ -51,11 +72,6 @@ class ExploreFeedController: UITableViewController {
             }
             self.showError()
         }
-        
-        let interaction = UIContextMenuInteraction(delegate: self)
-        view.addInteraction(interaction)
-        
-        configure()
     }
     
     //MARK: - Selectors

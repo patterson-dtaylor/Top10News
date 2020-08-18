@@ -38,5 +38,4 @@ struct WebService {
             
             return ac
     }
-
 }

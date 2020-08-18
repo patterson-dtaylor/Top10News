@@ -12,5 +12,6 @@ target 'Top10News' do
 	pod 'Firebase/Storage'
 	pod 'SDWebImage', '~> 5.0'
 	pod 'SideMenu', '~> 6.0'
+	pod 'SkeletonView'
 
 end
