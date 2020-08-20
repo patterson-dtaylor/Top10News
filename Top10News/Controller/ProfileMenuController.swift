@@ -21,7 +21,7 @@ class ProfileMenuController: UIViewController {
     
     lazy var profileImage: UIImageView = {
         let iv = UIImageView()
-        iv.contentMode = .scaleAspectFit
+        iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         iv.layer.cornerRadius = 125 / 2
         iv.layer.backgroundColor = UIColor.systemPink.cgColor
@@ -116,7 +116,7 @@ class ProfileMenuController: UIViewController {
             vc.modalPresentationStyle = .fullScreen
             present(vc, animated: true, completion: nil)
         } catch let error {
-            let ac = UIAlertController(title: "Error", message: "There was an erro signing out: \(error.localizedDescription)", preferredStyle: .alert)
+            let ac = UIAlertController(title: "Error", message: "There was an error signing out: \(error.localizedDescription)", preferredStyle: .alert)
             ac.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
         }
     }

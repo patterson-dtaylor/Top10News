@@ -48,7 +48,7 @@ class FeedController: UIViewController {
     
     lazy var profileImage: UIImageView = {
         let iv = UIImageView()
-        iv.contentMode = .scaleAspectFit
+        iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         iv.setDimensions(width: 50, height: 50)
         iv.layer.cornerRadius = 50 / 2

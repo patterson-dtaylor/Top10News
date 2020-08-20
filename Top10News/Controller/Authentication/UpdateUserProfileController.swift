@@ -102,7 +102,22 @@ class UpdateUserProfileController: UIViewController {
     //MARK: - Selectors
     
     @objc func addProfileButtonTapped() {
-        present(imagePicker, animated: true, completion: nil)
+        let ac = UIAlertController(title: "Update your profile picture!", message: "", preferredStyle: .alert)
+        
+        let camera = UIAlertAction(title: "Camera", style: .default) { (action) in
+            self.imagePicker.sourceType = .camera
+            self.present(self.imagePicker, animated: true, completion: nil)
+        }
+        
+        let userPhotos = UIAlertAction(title: "Choose Photo", style: .default) { (action) in
+            self.imagePicker.sourceType = .photoLibrary
+            self.present(self.imagePicker, animated: true, completion: nil)
+        }
+        
+        ac.addAction(camera)
+        ac.addAction(userPhotos)
+        
+        present(ac, animated: true, completion: nil)
     }
     
     @objc func saveChangesButtonTapped() {
@@ -119,7 +134,6 @@ class UpdateUserProfileController: UIViewController {
         }
         
         AuthService.shared.updatedUserData(withUserUID: uid, withProfileImage: updatedUserProfileImage, withUsername: updatedUsername) { (error, ref) in
-            print("DEBUG: Successfully updated user info!!!")
             
             guard let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) else { return }
             
@@ -163,7 +177,6 @@ class UpdateUserProfileController: UIViewController {
         profileImage.setDimensions(width: 150, height: 150)
         
         imagePicker.delegate = self
-        imagePicker.sourceType = .camera
         imagePicker.allowsEditing = true
         
         view.addSubview(editProfileImageSymbol)

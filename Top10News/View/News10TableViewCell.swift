@@ -25,7 +25,7 @@ class News10TableViewCell: UITableViewCell {
     var titleLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 1
-        label.font = UIFont(name: loraBold, size: 18)
+        label.font = UIFont.boldSystemFont(ofSize: 18)
         label.text = "Test Article Title"
         
         return label
@@ -34,7 +34,7 @@ class News10TableViewCell: UITableViewCell {
     var descriptionLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.font = UIFont(name: ralewayRegular, size: 14)
+        label.font = UIFont.systemFont(ofSize: 14)
         label.text = "Lorem ipsum dolor sit amet, massa nam ac, leo quisque morbi vel. Consectetuer proin et duis, ut mauris augue placerat, feugiat sed cras sagittis mollis egestas, sagittis magna magna eu mi curabitur. Quis nulla penatibus mauris adipiscing condimentum, habitasse quis ligula neque, torquent sociosqu eros in potenti ornare posuere. Cursus sodales sociis pede eros purus suspendisse, sapien nunc dolor vulputate perspiciatis volutpat, sit faucibus nullam libero, erat vel id amet. Inceptos eget vitae cursus justo nonummy, viverra magna lorem sodales porta."
         
         return label
