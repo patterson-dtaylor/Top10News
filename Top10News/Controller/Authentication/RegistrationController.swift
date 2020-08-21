@@ -99,7 +99,6 @@ class RegistrationController: UIViewController {
         let ac = UIAlertController(title: "Profile Image", message: "Choose how or where to get your profile image.", preferredStyle: .actionSheet)
         
         let camera = UIAlertAction(title: "Camera", style: .default) { (action) in
-            print("DEBUG: Imagepicker!!!")
             self.imagePicker.sourceType = .camera
             self.imagePicker.allowsEditing = true
             self.imagePicker.cameraCaptureMode = .photo
@@ -151,8 +150,6 @@ class RegistrationController: UIViewController {
             username = safeUsername
         }
         
-        print("DEBUG: User username is \(username).")
-        
         guard let safeEmail = emailTextField.text else { return }
     
         let isAValidEmailAddress = Utilities().isValidEmailAddress(emailAddressString: safeEmail)
@@ -168,8 +165,6 @@ class RegistrationController: UIViewController {
             
             present(ac, animated: true, completion: nil)
         }
-        
-        print("DEBUG: User email is \(email).")
         
         guard let safePassword = passwordTextField.text else { return }
         
@@ -187,8 +182,6 @@ class RegistrationController: UIViewController {
             present(ac, animated: true, completion: nil)
         }
         
-        print("DEBUG: User password is \(password).")
-        
         let userCredentials = AuthCredentials(
             profileImage: profileImage,
             username: username,
@@ -197,7 +190,6 @@ class RegistrationController: UIViewController {
         )
         
         AuthService.shared.registerUser(withCredientials: userCredentials) { (error, databaseReference) in
-            print("DEBUG: Successfully registered user!!!")
             
             guard let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) else { return }
             

@@ -35,10 +35,11 @@ class BookmarkController: UITableViewController {
     //MARK: - Helpers
     
     func configureUI() {
-        view.backgroundColor = .white
         
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "Bookmarks"
+        
+        view.backgroundColor = .systemGray6
         
         tableView.frame = self.view.frame
         tableView.dataSource = self
@@ -58,6 +59,7 @@ class BookmarkController: UITableViewController {
             self.bookmarks = bookmarks.sorted(by: { $0.timestamp > $1.timestamp })
             self.tableView.refreshControl?.endRefreshing()
         }
+        tableView.reloadData()
     }
 
 }
@@ -97,7 +99,6 @@ extension BookmarkController: UIGestureRecognizerDelegate {
         
         let share = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up.fill")) { action in
             
-            print("Debug: Share this article!!!")
             let item = [URL(string: bookmark.url)]
             
             let ac = UIActivityViewController(activityItems: item as [Any], applicationActivities: nil)
@@ -110,9 +111,10 @@ extension BookmarkController: UIGestureRecognizerDelegate {
                     let ac = BookmarkService.shared.showError(withErrorType: "deleting")
                     self.present(ac, animated: true, completion: nil)
                 }
-                
+                self.bookmarks.remove(at: indexPath.row)
                 self.fetchBookmarks()
             }
+            
             
         }
         

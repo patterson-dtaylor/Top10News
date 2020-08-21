@@ -51,9 +51,9 @@ class ExploreController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureUI()
         
-        print()
+        view.backgroundColor = .systemGray6
+        configureUI()
 
     }
     
@@ -76,7 +76,6 @@ class ExploreController: UIViewController {
     //MARK: - Helpers
     
     func configureUI() {
-        view.backgroundColor = .white
         navigationController?.navigationBar.isHidden = true
         
         view.addSubview(logoImageView)

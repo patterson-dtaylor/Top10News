@@ -61,7 +61,7 @@ class Top10Controller: UITableViewController {
     //MARK: - Helpers
     
     func configureUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = .systemGray6
         
         let imageView = UIImageView(image: UIImage(named: "top10NavBar"))
         imageView.contentMode = .scaleAspectFit
