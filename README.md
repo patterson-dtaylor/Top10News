@@ -1,7 +1,7 @@
 # Top10 News
 
 <p align="center">
-<img src="Documentation/top10news-mockup.png.png" width="650"  title="Top10News App">
+<img src="Documentation/top10news-mockup.png" width="650"  title="Top10News App">
 </p>
 
 ## Author
