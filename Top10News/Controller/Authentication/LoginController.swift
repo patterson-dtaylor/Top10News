@@ -125,7 +125,7 @@ class LoginController: UIViewController {
     //MARK: - Helpers
     
     func configureUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = .systemGray6
         navigationController?.navigationBar.isHidden = true
         
         view.addSubview(logoImageView)

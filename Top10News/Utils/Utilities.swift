@@ -21,7 +21,7 @@ class Utilities {
     
     func inputContainerView (withColor color: UIColor, withImage image: String, textField: UITextField) -> UIView {
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = .systemGray6
         view.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
         let iv = UIImageView()

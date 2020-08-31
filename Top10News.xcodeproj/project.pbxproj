@@ -30,6 +30,7 @@
 		67B459F424E2A6D90080037B /* ProfileMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B459F324E2A6D90080037B /* ProfileMenuController.swift */; };
 		67BA7DB824E69BB200E67A63 /* UpdateUserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BA7DB724E69BB200E67A63 /* UpdateUserProfileController.swift */; };
 		67BA7DBC24E94A0600E67A63 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BA7DBB24E94A0600E67A63 /* Constants.swift */; };
+		67BA7DBE24EF753D00E67A63 /* AppStoreDistrubutionCertificate.p12 in Resources */ = {isa = PBXBuildFile; fileRef = 67BA7DBD24EF753D00E67A63 /* AppStoreDistrubutionCertificate.p12 */; };
 		67FEE30824CC451F00D597A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FEE30724CC451F00D597A9 /* AppDelegate.swift */; };
 		67FEE30A24CC451F00D597A9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FEE30924CC451F00D597A9 /* SceneDelegate.swift */; };
 		67FEE30F24CC451F00D597A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67FEE30D24CC451F00D597A9 /* Main.storyboard */; };
@@ -71,6 +72,7 @@
 		67B459F324E2A6D90080037B /* ProfileMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMenuController.swift; sourceTree = "<group>"; };
 		67BA7DB724E69BB200E67A63 /* UpdateUserProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserProfileController.swift; sourceTree = "<group>"; };
 		67BA7DBB24E94A0600E67A63 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		67BA7DBD24EF753D00E67A63 /* AppStoreDistrubutionCertificate.p12 */ = {isa = PBXFileReference; lastKnownFileType = file; path = AppStoreDistrubutionCertificate.p12; sourceTree = "<group>"; };
 		67FEE30424CC451F00D597A9 /* Top10News.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Top10News.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		67FEE30724CC451F00D597A9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		67FEE30924CC451F00D597A9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 				67FEE31224CC452200D597A9 /* LaunchScreen.storyboard */,
 				67FEE31524CC452200D597A9 /* Info.plist */,
 				6744CF5524CF4CC700685AD3 /* GoogleService-Info.plist */,
+				67BA7DBD24EF753D00E67A63 /* AppStoreDistrubutionCertificate.p12 */,
 			);
 			path = Top10News;
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6751C7AF24D2DCC50007E5A4 /* Raleway-Bold.ttf in Resources */,
+				67BA7DBE24EF753D00E67A63 /* AppStoreDistrubutionCertificate.p12 in Resources */,
 				67FEE31424CC452200D597A9 /* LaunchScreen.storyboard in Resources */,
 				67FEE31124CC452200D597A9 /* Assets.xcassets in Resources */,
 				67FEE30F24CC451F00D597A9 /* Main.storyboard in Resources */,
@@ -546,12 +550,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = D73DG79L79;
 				INFOPLIST_FILE = Top10News/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.taylorpatterson.Top10News;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -565,12 +571,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = D73DG79L79;
 				INFOPLIST_FILE = Top10News/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.taylorpatterson.Top10News;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

@@ -208,7 +208,7 @@ class RegistrationController: UIViewController {
     //MARK: - Helpers
     
     func configureUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = .systemGray6
         
         view.addSubview(addProfileImageButton)
         addProfileImageButton.centerX(inView: view, topAnchor: view.safeAreaLayoutGuide.topAnchor, paddingTop: 100)
