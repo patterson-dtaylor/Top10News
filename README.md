@@ -45,7 +45,7 @@ For more info on **NewsAPI** click [here](https://newsapi.org/)
 For more info on **MVVM** click [here](https://www.raywenderlich.com/34-design-patterns-by-tutorials-mvvm)
 
 <p align="left">
-<img src="https://www.rookieup.com/wp-content/uploads/2018/01/sketch-logo-light-transparent@2x.png" width="100" title="SD WebImage Icon">
+<img src="https://raw.githubusercontent.com/SDWebImage/SDWebImage/master/SDWebImage_logo.png" width="100" title="SD WebImage Icon">
 </p>
 
 **SD WebImage** - A Cocoapod for better image implementation.  
